@@ -1,5 +1,6 @@
 const path = require('path');
-require('dotenv').config({ path: path.resolve(__dirname, '../.env') });
+require('dotenv').config({ path: path.resolve(__dirname, '.env') });
+console.log('Email User configured:', process.env.EMAIL_USER);
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
