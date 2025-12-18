@@ -1,0 +1,22 @@
+{
+    "name": "hotel-booking-frontend",
+    "version": "1.0.0",
+    "description": "Frontend for Bhats Hotel Booking",
+    "scripts": {
+        "dev": "vite",
+        "build": "vite build",
+        "preview": "vite preview",
+        "server": "cd server && npm run dev",
+        "install:all": "npm install && cd server && npm install"
+    },
+    "devDependencies": {
+        "@vitejs/plugin-react": "^5.1.2",
+        "vite": "^7.3.0"
+    },
+    "dependencies": {
+        "firebase": "^12.7.0",
+        "react": "^19.2.3",
+        "react-dom": "^19.2.3",
+        "react-router-dom": "^7.11.0"
+    }
+}
