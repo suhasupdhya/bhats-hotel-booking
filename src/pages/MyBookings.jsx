@@ -24,8 +24,10 @@ const MyBookings = () => {
 
     const fetchBookings = async (currentUser) => {
         try {
-            // Fetch by email as it's more reliable if userId wasn't saved in older bookings
-            const res = await fetch(`${API_URL}/bookings?email=${currentUser.email}`);
+            // Fetch by both email and userId to ensure we catch all bookings
+            const userId = currentUser.uid;
+            const email = currentUser.email;
+            const res = await fetch(`${API_URL}/bookings?email=${email}&userId=${userId}`);
             const data = await res.json();
             setBookings(data);
         } catch (err) {
@@ -104,7 +106,7 @@ const MyBookings = () => {
                                             <td>{new Date(booking.checkIn).toLocaleDateString()}</td>
                                             <td>{new Date(booking.checkOut).toLocaleDateString()}</td>
                                             <td>{booking.guests}</td>
-                                            <td>₹{booking.totalAmount || (booking.roomType === 'ac' ? 1500 : 1000)}</td>
+                                            <td>₹{booking.totalPrice || (booking.roomType === 'ac' ? 1500 : 1000)}</td>
                                             <td>
                                                 <span className={`status-badge ${booking.status || 'confirmed'}`}>
                                                     {booking.status || 'Confirmed'}

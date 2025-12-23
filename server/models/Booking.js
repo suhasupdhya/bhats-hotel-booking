@@ -11,6 +11,7 @@ const bookingSchema = new mongoose.Schema({
     checkIn: { type: Date, required: true },
     checkOut: { type: Date, required: true },
     guests: Number,
+    rooms: { type: Number, default: 1 },
     nights: Number,
     totalPrice: Number,
     status: { type: String, default: 'request' }, // request, confirmed, cancelled

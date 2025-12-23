@@ -4,8 +4,11 @@ import { API_URL } from '../utils/api';
 const Reviews = () => {
     const [reviews, setReviews] = useState([]);
     const [newReview, setNewReview] = useState({ name: '', rating: 5, comment: '' });
+    const [showReviews, setShowReviews] = useState(false);
 
     useEffect(() => {
+        // Only fetch if showing? Or fetch always? Fetching always for now so count is ready if needed, 
+        // but user asked for "dropdown called see reviews which after clicked all the reviews will become visible"
         fetchReviews();
     }, []);
 
@@ -46,22 +49,37 @@ const Reviews = () => {
                     <h2>Customer Reviews</h2>
                 </div>
 
-                <div className="reviews-grid">
-                    {reviews.map((review, index) => (
-                        <div key={index} className="review-card">
-                            <div className="review-header">
-                                <span className="reviewer-name">{review.name}</span>
-                                <span className="review-date">{new Date(review.date).toLocaleDateString()}</span>
-                            </div>
-                            <div className="stars">
-                                {[...Array(5)].map((_, i) => (
-                                    <i key={i} className={`${i < review.rating ? 'fas' : 'far'} fa-star`}></i>
-                                ))}
-                            </div>
-                            <p>{review.comment}</p>
-                        </div>
-                    ))}
+                <div className="text-center" style={{ marginBottom: '2rem' }}>
+                    <button
+                        className="btn btn-outline"
+                        onClick={() => setShowReviews(!showReviews)}
+                    >
+                        {showReviews ? 'Hide Reviews' : 'See Reviews'}
+                    </button>
                 </div>
+
+                {showReviews && (
+                    <div className="reviews-grid" style={{ marginBottom: '3rem', animation: 'fadeIn 0.5s ease' }}>
+                        {reviews.length === 0 ? (
+                            <p className="text-center">No reviews yet. Be the first to review!</p>
+                        ) : (
+                            reviews.map((review, index) => (
+                                <div key={index} className="review-card">
+                                    <div className="review-header">
+                                        <span className="reviewer-name">{review.name}</span>
+                                        <span className="review-date">{new Date(review.date).toLocaleDateString()}</span>
+                                    </div>
+                                    <div className="stars">
+                                        {[...Array(5)].map((_, i) => (
+                                            <i key={i} className={`${i < review.rating ? 'fas' : 'far'} fa-star`}></i>
+                                        ))}
+                                    </div>
+                                    <p>{review.comment}</p>
+                                </div>
+                            ))
+                        )}
+                    </div>
+                )}
 
                 <div className="review-form-container">
                     <h3>Write a Review</h3>

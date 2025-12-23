@@ -27,11 +27,12 @@ const sendBookingRequestEmail = async (bookingData) => {
                 <h3>Booking Details</h3>
                 <p><strong>Booking ID:</strong> ${bookingData.bookingId}</p>
                 <p><strong>Room Type:</strong> ${bookingData.roomType}</p>
+                <p><strong>Number of Rooms:</strong> ${bookingData.rooms || 1}</p>
                 <p><strong>Check-in:</strong> ${new Date(bookingData.checkIn).toLocaleDateString()}</p>
                 <p><strong>Check-out:</strong> ${new Date(bookingData.checkOut).toLocaleDateString()}</p>
                 <p><strong>Guests:</strong> ${bookingData.guests}</p>
                 <p><strong>Nights:</strong> ${bookingData.nights}</p>
-                <p><strong>Total Price:</strong> $${bookingData.totalPrice}</p>
+                <p><strong>Total Price:</strong> ₹${bookingData.totalPrice}</p>
                 <p><strong>Special Requests:</strong> ${bookingData.specialRequests || 'None'}</p>
                 <hr>
                 <p><em>Reply to this email to contact the guest directly.</em></p>

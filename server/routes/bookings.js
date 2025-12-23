@@ -10,8 +10,12 @@ router.get('/', async (req, res) => {
         const { email, userId } = req.query;
         let query = {};
 
-        if (email) query.email = email;
-        if (userId) query.userId = userId;
+        if (email || userId) {
+            const conditions = [];
+            if (email) conditions.push({ email });
+            if (userId) conditions.push({ userId });
+            if (conditions.length > 0) query.$or = conditions;
+        }
 
         const bookings = await Booking.find(query).sort({ checkIn: -1 }); // Sort by newest first
         res.json(bookings);
