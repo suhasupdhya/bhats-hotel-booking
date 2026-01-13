@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 
 const bookingSchema = new mongoose.Schema({
     bookingId: { type: String, required: true, unique: true },
-    userId: { type: String, required: true }, // Links to User.uid
+    userId: { type: String, required: false }, // Links to User.uid
     firstName: String,
     lastName: String,
     email: String,
