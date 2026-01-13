@@ -11,7 +11,7 @@ const PORT = process.env.PORT || 3000;
 
 // Middleware
 app.use(cors({
-    origin: process.env.FRONTEND_URL || ['http://localhost:5173', 'http://localhost:3000'],
+    origin: true, // Allow all origins to fix deployment issues
     credentials: true
 }));
 app.use(bodyParser.json());
