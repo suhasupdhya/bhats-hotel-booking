@@ -38,6 +38,12 @@ app.use('/api/users', userRoutes);
 app.use('/api/reviews', reviewRoutes); // Mount reviews route
 
 
-app.listen(PORT, () => {
-    console.log(`🚀 Server running on http://localhost:${PORT}`);
-});
+// Only run the server if this file is run directly (not imported)
+if (require.main === module) {
+    app.listen(PORT, () => {
+        console.log(`🚀 Server running on http://localhost:${PORT}`);
+    });
+}
+
+// Export the app for Vercel
+module.exports = app;
