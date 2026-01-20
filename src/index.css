@@ -609,4 +609,126 @@ button {
         opacity: 1;
         transform: translateY(0);
     }
+}/* =========================================
+   Mobile Responsiveness
+   ========================================= */
+
+@media (max-width: 768px) {
+
+    /* Layout Adjustments */
+    .container {
+        padding: 0 1rem;
+        width: 100%;
+        max-width: 100%;
+    }
+
+    .section-padding {
+        padding: 3rem 0;
+    }
+
+    /* Header & Navigation */
+    .header {
+        height: auto;
+        padding: 1rem 0;
+        position: relative;
+        /* Changing from sticky might be better for very small screens, but sticking with existing flavor */
+    }
+
+    .header .container {
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .nav {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 1rem;
+        width: 100%;
+    }
+
+    .user-menu {
+        position: static;
+        /* Allow dropdown to position relative to window or parent if needed */
+    }
+
+    /* Hero Section */
+    .hero {
+        height: auto;
+        min-height: 60vh;
+        padding: 4rem 0;
+    }
+
+    .hero-content h2 {
+        font-size: 2.5rem;
+    }
+
+    .hero-content p {
+        font-size: 1rem;
+        padding: 0 1rem;
+    }
+
+    /* Typography */
+    .section-title h2 {
+        font-size: 2rem;
+    }
+
+    /* Rooms Grid */
+    .rooms-grid {
+        grid-template-columns: 1fr;
+        padding: 0 0.5rem;
+    }
+
+    .room-card {
+        max-width: 100%;
+    }
+
+    /* Auth Forms */
+    .auth-section {
+        padding: 1rem;
+        min-height: auto;
+        padding-top: 2rem;
+        padding-bottom: 2rem;
+    }
+
+    .auth-card {
+        padding: 1.5rem;
+    }
+
+    /* Bookings Table */
+    .page-header {
+        padding: 2rem 0;
+    }
+
+    .bookings-table-container {
+        margin: 0 -0.5rem;
+        /* Allow card to bleed slightly to edges */
+        border-radius: 0;
+        border-left: none;
+        border-right: none;
+    }
+
+    .bookings-table th,
+    .bookings-table td {
+        padding: 0.75rem 0.5rem;
+        font-size: 0.9rem;
+    }
+
+    .status-badge {
+        font-size: 0.7rem;
+        padding: 0.2rem 0.5rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .logo h1 {
+        font-size: 1.25rem;
+    }
+
+    .hero-content h2 {
+        font-size: 2rem;
+    }
+
+    .nav a {
+        font-size: 0.85rem;
+    }
 }
