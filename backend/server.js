@@ -28,6 +28,11 @@ app.get('/', (req, res) => {
     res.send('Bhats Hotel Backend is Running');
 });
 
+// Health Check endpoint
+app.get('/health', (req, res) => {
+    res.status(200).json({ status: 'ok', timestamp: new Date() });
+});
+
 // Import Routes
 const bookingRoutes = require('./routes/bookings');
 const userRoutes = require('./routes/users');

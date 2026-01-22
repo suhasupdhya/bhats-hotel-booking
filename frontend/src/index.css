@@ -609,7 +609,9 @@ button {
         opacity: 1;
         transform: translateY(0);
     }
-}/* =========================================
+}
+
+/* =========================================
    Mobile Responsiveness
    ========================================= */
 
@@ -656,6 +658,7 @@ button {
         height: auto;
         min-height: 60vh;
         padding: 4rem 0;
+        background-attachment: scroll;
     }
 
     .hero-content h2 {

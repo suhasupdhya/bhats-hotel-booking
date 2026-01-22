@@ -39,11 +39,20 @@ const sendBookingRequestEmail = async (bookingData) => {
             `
         };
 
-        const info = await transporter.sendMail(mailOptions);
+        // Timeout after 10 seconds
+        const timeout = new Promise((_, reject) =>
+            setTimeout(() => reject(new Error('Email sending timed out')), 10000)
+        );
+
+        const info = await Promise.race([
+            transporter.sendMail(mailOptions),
+            timeout
+        ]);
+
         console.log('Email sent: ' + info.response);
         return true;
     } catch (error) {
-        console.error('Error sending email:', error);
+        console.error('Error sending email:', error.message);
         return false;
     }
 };

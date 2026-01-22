@@ -71,13 +71,13 @@ router.post('/', async (req, res) => {
         const booking = new Booking(bookingData);
         const newBooking = await booking.save();
 
-        // Send email notification
-        try {
-            await sendBookingRequestEmail(newBooking);
-        } catch (emailErr) {
-            console.error("Email failed:", emailErr);
-            // Don't fail the booking just because email failed
-        }
+        // Send email notification (Fire and Forget)
+        sendBookingRequestEmail(newBooking)
+            .then(success => {
+                if (success) console.log(`Email sent for booking ${newBooking.bookingId}`);
+                else console.error(`Email failed for booking ${newBooking.bookingId}`);
+            })
+            .catch(err => console.error(`Email error for booking ${newBooking.bookingId}:`, err));
 
         res.status(201).json(newBooking);
     } catch (err) {

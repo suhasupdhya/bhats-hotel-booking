@@ -5,10 +5,15 @@ import Home from './pages/Home';
 import Auth from './pages/Auth';
 import MyBookings from './pages/MyBookings';
 
+import WhatsAppButton from './components/WhatsAppButton';
+import HealthCheck from './components/HealthCheck';
+
 function App() {
     return (
         <ThemeProvider>
             <Router>
+                <HealthCheck />
+                <WhatsAppButton />
                 <Routes>
                     <Route path="/" element={<Home />} />
                     <Route path="/auth" element={<Auth />} />
