@@ -120,6 +120,7 @@ const BookingForm = () => {
                     <p style={{ margin: '0.5rem 0', color: '#ffffff' }}><strong>Email:</strong> {confirmedBooking.email}</p>
                     <p style={{ margin: '0.5rem 0', color: '#ffffff' }}><strong>Phone:</strong> {confirmedBooking.phone}</p>
                     <p style={{ margin: '0.5rem 0', color: '#ffffff' }}><strong>Room Type:</strong> {confirmedBooking.roomType === 'ac' ? 'AC Room' : 'Non-AC Room'}</p>
+                    <p style={{ margin: '0.5rem 0', color: '#ffffff' }}><strong>Number of People:</strong> {confirmedBooking.guests}</p>
                     <p style={{ margin: '0.5rem 0', color: '#ffffff' }}><strong>Number of Rooms:</strong> {confirmedBooking.rooms}</p>
                     <p style={{ margin: '0.5rem 0', color: '#ffffff' }}><strong>Dates:</strong> {confirmedBooking.checkIn} to {confirmedBooking.checkOut}</p>
                     <p style={{ margin: '0.5rem 0', color: '#ffffff' }}><strong>Number of Days:</strong> {confirmedBooking.nights}</p>

@@ -14,8 +14,8 @@ const Home = () => {
                 {/* Hero Section */}
                 <section className="hero">
                     <div className="hero-content">
-                        <h2>Welcome to Bhats Hotel</h2>
-                        <p>Experience comfort and hospitality in the heart of the city</p>
+
+
                         <a href="#booking" className="btn btn-primary">Book Your Stay</a>
                     </div>
                 </section>

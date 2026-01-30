@@ -6,6 +6,7 @@ import Auth from './pages/Auth';
 import MyBookings from './pages/MyBookings';
 
 import WhatsAppButton from './components/WhatsAppButton';
+import LocationButton from './components/LocationButton';
 import HealthCheck from './components/HealthCheck';
 
 function App() {
@@ -13,6 +14,7 @@ function App() {
         <ThemeProvider>
             <Router>
                 <HealthCheck />
+                <LocationButton />
                 <WhatsAppButton />
                 <Routes>
                     <Route path="/" element={<Home />} />
