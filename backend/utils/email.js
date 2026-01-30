@@ -1,19 +1,13 @@
-const nodemailer = require('nodemailer');
+const { Resend } = require('resend');
 
-const transporter = nodemailer.createTransport({
-    service: 'gmail',
-    auth: {
-        user: process.env.EMAIL_USER,
-        pass: process.env.EMAIL_PASS?.replace(/\s+/g, '')
-    }
-});
+const resend = new Resend(process.env.RESEND_API_KEY);
 
 const sendBookingRequestEmail = async (bookingData) => {
     try {
-        const mailOptions = {
-            from: process.env.EMAIL_USER,
-            to: 'supadhya2005@gmail.com',
-            replyTo: bookingData.email,
+        const { error } = await resend.emails.send({
+            from: 'Bhats Hotel <onboarding@resend.dev>', // Default Resend sender for testing, update if using custom domain
+            to: process.env.OWNER_EMAIL || 'supadhya2005@gmail.com',
+            reply_to: bookingData.email,
             subject: `New Booking Request: ${bookingData.bookingId}`,
             html: `
                 <h2>New Booking Request Received</h2>
@@ -37,19 +31,14 @@ const sendBookingRequestEmail = async (bookingData) => {
                 <hr>
                 <p><em>Reply to this email to contact the guest directly.</em></p>
             `
-        };
+        });
 
-        // Timeout after 10 seconds
-        const timeout = new Promise((_, reject) =>
-            setTimeout(() => reject(new Error('Email sending timed out')), 10000)
-        );
+        if (error) {
+            console.error('Error sending email:', error);
+            return false;
+        }
 
-        const info = await Promise.race([
-            transporter.sendMail(mailOptions),
-            timeout
-        ]);
-
-        console.log('Email sent: ' + info.response);
+        console.log('Email sent successfully');
         return true;
     } catch (error) {
         console.error('Error sending email:', error.message);
